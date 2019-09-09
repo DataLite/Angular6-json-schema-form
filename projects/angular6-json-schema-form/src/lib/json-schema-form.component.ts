@@ -162,6 +162,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
   @Output() modelChange = new EventEmitter<any>();
   @Output() formDataChange = new EventEmitter<any>();
   @Output() ngModelChange = new EventEmitter<any>();
+  @Output() widgetEvent = new EventEmitter<any>();
 
   onChange: Function;
   onTouched: Function;
@@ -188,6 +189,9 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
 
   ngOnInit() {
     this.updateForm();
+
+    // forwad widget events
+    this.jsf.widgetEvent.subscribe(data => this.widgetEvent.emit(data));
   }
 
   ngOnChanges() {
@@ -263,7 +267,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
 
   setFormValues(formValues: any, resetFirst = true) {
     if (formValues) {
-      const newFormValues = this.objectWrap ? formValues['1'] : formValues;
+      const newFormValues = this.objectWrap ? {'1': formValues} : formValues;
       if (!this.jsf.formGroup) {
         this.jsf.formValues = formValues;
         this.activateForm();
@@ -694,10 +698,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
     if (this.jsf.formGroup) {
 
       // Reset initial form values
-      if (!isEmpty(this.jsf.formValues) &&
-        this.jsf.formOptions.setSchemaDefaults !== true &&
-        this.jsf.formOptions.setLayoutDefaults !== true
-      ) {
+      if (!isEmpty(this.jsf.formValues)) {
         this.setFormValues(this.jsf.formValues);
       }
 

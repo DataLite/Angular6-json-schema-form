@@ -32,7 +32,7 @@ export class DemoComponent implements OnInit {
     'fr': 'French',
     'zh': 'Chinese',
   };
-  frameworkList: any = ['material-design', 'bootstrap-3', 'bootstrap-4', 'no-framework'];
+    frameworkList: any = ['material-design', 'bootstrap-3', 'bootstrap-4', 'no-framework'];
   frameworks: any = {
     'material-design': 'Material Design',
     'bootstrap-3': 'Bootstrap 3',
@@ -62,7 +62,7 @@ export class DemoComponent implements OnInit {
     debug: false, // Don't show inline debugging information
     loadExternalAssets: true, // Load external css and JavaScript for frameworks
     returnEmptyFields: false, // Don't return values for empty input fields
-    setSchemaDefaults: true, // Always use schema defaults for empty fields
+    setSchemaDefaults: 'auto', // Always use schema defaults for empty fields
     defautWidgetOptions: { feedback: true }, // Show inline feedback icons
   };
   liveFormData: any = {};

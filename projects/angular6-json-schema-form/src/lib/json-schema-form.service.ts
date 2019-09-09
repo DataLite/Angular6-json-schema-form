@@ -69,6 +69,7 @@ export class JsonSchemaFormService {
   dataChanges: Subject<any> = new Subject(); // Form data observable
   isValidChanges: Subject<any> = new Subject(); // isValid observable
   validationErrorChanges: Subject<any> = new Subject(); // validationErrors observable
+  widgetEvent: Subject<any> = new Subject(); // Form designer observable
 
   arrayMap: Map<string, number> = new Map(); // Maps arrays in data object and number of tuple values
   dataMap: Map<string, any> = new Map(); // Maps paths in form data to schema and formGroup paths
