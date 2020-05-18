@@ -26,7 +26,7 @@ import {
   isEmpty,
   isObject
   } from './shared/validator.functions';
-import { Injectable } from '@angular/core';
+import {Injectable, Input} from '@angular/core';
 import { JsonPointer } from './shared/jsonpointer.functions';
 import { Subject } from 'rxjs';
 
@@ -59,6 +59,7 @@ export class JsonSchemaFormService {
   formGroup: any = null; // Angular formGroup, which powers the reactive form
   framework: any = null; // Active framework component
   formOptions: any; // Active options, used to configure the form
+  childComponents: any; // TSM Extension - reference to child components
 
   validData: any = null; // Valid form data (or null) (=== isValid ? data : null)
   isValid: boolean = null; // Is current form data valid?
@@ -69,7 +70,7 @@ export class JsonSchemaFormService {
   dataChanges: Subject<any> = new Subject(); // Form data observable
   isValidChanges: Subject<any> = new Subject(); // isValid observable
   validationErrorChanges: Subject<any> = new Subject(); // validationErrors observable
-  widgetEvent: Subject<any> = new Subject(); // Form designer observable
+  widgetEvent: Subject<any> = new Subject(); // TSM Extension - form designer observable
 
   arrayMap: Map<string, number> = new Map(); // Maps arrays in data object and number of tuple values
   dataMap: Map<string, any> = new Map(); // Maps paths in form data to schema and formGroup paths

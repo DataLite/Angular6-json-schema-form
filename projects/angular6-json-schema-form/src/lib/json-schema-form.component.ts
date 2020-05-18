@@ -132,6 +132,8 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
 
   @Input() language: string; // Language
 
+  @Input() childComponents: any; // TSM Extension - reference to child components
+
   // Development inputs, for testing and debugging
   @Input() loadExternalAssets: boolean; // Load external framework assets?
   @Input() debug: boolean; // Show debug information?
@@ -317,6 +319,7 @@ export class JsonSchemaFormComponent implements ControlValueAccessor, OnChanges,
     ) {
 
       this.jsf.resetAllValues();  // Reset all form values to defaults
+      this.jsf.childComponents = this.childComponents; // TSM extension - reference to child components
       this.initializeOptions();   // Update options
       this.initializeSchema();    // Update schema, schemaRefLibrary,
                                   // schemaRecursiveRefMap, & dataRecursiveRefMap
